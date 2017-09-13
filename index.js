@@ -19,7 +19,9 @@ const server = http.createServer((req, res) => {
   let body = '';
   req.on('data', data => {
     body += data;
-    if (body.length > 1e6) {
+    // Too much POST data, kill the connection!
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 2e6) {
       req.connection.destroy();
     }
   });
@@ -64,10 +66,13 @@ server.listen(HTTP_PORT, (err) => {
 });
 
 process.on('exit', () => {
+  console.log('');
+  console.log('Exiting Web server');
+  console.log('Exiting STANFORD NER server');
   child.kill('SIGINT');
 });
 process.on('SIGINT', () => {
-  process.exit(2);
+  process.exit();
 });
 process.on('uncaughtException', e => {
   console.log(e.stack);
