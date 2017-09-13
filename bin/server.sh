@@ -7,4 +7,4 @@ port=$1
 
 # Configure classifiers and port to your need
 
-java -mx1000m -cp "$scriptdir/bin/stanford-ner.jar:$scriptdir/bin/lib/*" edu.stanford.nlp.ie.NERServer  -loadClassifier $scriptdir/bin/classifiers/english.muc.7class.distsim.crf.ser.gz -port $port -outputFormat inlineXML
+java -mx1000m -cp "$scriptdir/stanford-ner.jar:$scriptdir/lib/*" edu.stanford.nlp.ie.NERServer  -loadClassifier $scriptdir/classifiers/english.muc.7class.distsim.crf.ser.gz -port $port -outputFormat inlineXML
