@@ -13,7 +13,7 @@ childProcess.exec('java -version', (err, stdout, stderr) => {
 const HTTP_PORT = process.argv[2] || 9000;
 const NER_PORT = process.argv[3] || 8080;
 
-const child = childProcess.spawn('./server.sh', [`${NER_PORT}`]);
+const child = childProcess.spawn('./bin/server.sh', [`${NER_PORT}`]);
 
 const server = http.createServer((req, res) => {
   let body = '';
