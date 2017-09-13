@@ -1,4 +1,4 @@
-# ner-webservice
+# ner-server
 
 > Lightweight web server for Stanford NER
 
