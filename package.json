@@ -1,0 +1,23 @@
+{
+  "name": "ner-webservice",
+  "version": "1.0.0",
+  "description": "STANFORD NER Webservice",
+  "main": "index.js",
+  "config": {
+    "http_port": 9000,
+    "ner_port": 8080
+  },
+  "scripts": {
+    "start": "node index.js $npm_package_config_http_port $npm_package_config_ner_port",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stanford",
+    "ner",
+    "ner",
+    "webservice",
+    "nodejs"
+  ],
+  "author": "Enmaso Inc",
+  "license": "MIT"
+}
