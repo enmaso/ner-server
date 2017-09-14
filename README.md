@@ -24,4 +24,11 @@ curl -T yourfile.txt localhost:9000
 
 Returns JSON.
 
-Don't pass it more than 1MB of text at a time. That would be dumb.
+## Config
+Open config.js and change
+```
+web.port
+ner.port
+put.limit
+```
+The port values are self explanatory. The PUT limit is the file size limit to which the server accepts. Default is 2MB, I wouldn't recommend going higher than that.
