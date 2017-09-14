@@ -4,5 +4,8 @@ module.exports = {
   },
   "ner": {
     "port": 8080
+  },
+  "put": {
+    "limit": 2
   }
 }
