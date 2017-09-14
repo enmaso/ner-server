@@ -12,22 +12,25 @@ childProcess.exec('java -version', (err, stdout, stderr) => {
   }
 });
 
-// const HTTP_PORT = process.argv[2] || 9000;
-// const NER_PORT = process.argv[3] || 8080;
-
 const child = childProcess.spawn('./bin/server.sh', [`${config.ner.port}`]);
 
 const server = http.createServer((req, res) => {
   let body = '';
+  if(req.method !== 'PUT') {
+    res.statusCode = 400;
+    return res.end('HTTP PUT');
+  }
   req.on('data', data => {
     body += data;
-    // Too much POST data, kill the connection!
-    // 2e6 === 2 * Math.pow(10, 6) === 2 * 1000000 ~~~ 2MB
-    if (body.length > 2e6) {
+    if (body.length > (config.put.limit * Math.pow(10, 6))) {
       req.connection.destroy();
     }
   });
   req.on('end', () => {
+    if(body.length == 0) {
+      res.statusCode = 400;
+      return res.end('HTTP PUT');
+    }
     let socket = new net.Socket();
     res.setHeader('Content-Type', 'application/json');
     socket.connect(config.ner.port, 'localhost', () => {
