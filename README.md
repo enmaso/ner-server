@@ -12,11 +12,12 @@
 
 ## Notes
 Accepts PUT method only.
-Accepts STRING data or TEXT files only.
+
+PUT a string
 ```
 curl -X PUT --data "Sample text data, by Frank Sinatra, in 1969, flew to the moon for $10.00" localhost:9000
 ```
-## OR
+PUT a text file
 ```
 curl -T yourfile.txt localhost:9000
 ```
