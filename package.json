@@ -1,8 +1,8 @@
 {
-  "name": "ner-webservice",
-  "version": "1.0.0",
-  "description": "STANFORD NER Webservice",
-  "main": "index.js",
+  "name": "ner-server",
+  "version": "1.3.5",
+  "description": "Lightweight Nodejs STANFORD Named Entity Recognition server",
+  "main": "ner.js",
   "config": {
     "ports": {
       "http": 9000,
@@ -11,9 +11,17 @@
     "limit": 2
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node ner.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enmaso/ner-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enmaso/ner-server/issues"
+  },
+  "homepage": "https://github.com/enmaso/ner-server#readme",
   "keywords": [
     "stanford",
     "ner",
@@ -21,6 +29,6 @@
     "webservice",
     "nodejs"
   ],
-  "author": "Enmaso Inc",
-  "license": "GPLv3"
+  "author": "Enmaso, Inc",
+  "license": "GPL-3.0"
 }
