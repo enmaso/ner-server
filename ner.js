@@ -10,8 +10,8 @@ childProcess.exec('java -version', (err, stdout, stderr) => {
   }
 });
 
-const hport = process.env.npm_package_config_ports_http;
-const nport = process.env.npm_package_config_ports_ner;
+const hport = process.env.npm_package_config_port_http;
+const nport = process.env.npm_package_config_port_ner;
 const limit = process.env.npm_package_config_limit;
 const child = childProcess.spawn('./bin/server.sh', [`${nport}`]);
 const server = http.createServer((req, res) => {

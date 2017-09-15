@@ -4,10 +4,8 @@
   "description": "Lightweight Nodejs STANFORD Named Entity Recognition server",
   "main": "ner.js",
   "config": {
-    "ports": {
-      "http": 9000,
-      "ner": 8080
-    },
+    "port_http": 9000,
+    "port_ner": 8080,
     "limit": 2
   },
   "scripts": {
