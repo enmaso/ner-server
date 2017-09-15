@@ -10,9 +10,10 @@ childProcess.exec('java -version', (err, stdout, stderr) => {
   }
 });
 
-const hport = process.env.npm_package_config_port_http;
-const nport = process.env.npm_package_config_port_ner;
-const limit = process.env.npm_package_config_limit;
+const hport = process.env.HPORT || 9000;
+const nport = process.env.NPORT || 8080;
+const limit = process.env.LIMIT || 2;
+
 const child = childProcess.spawn('./bin/server.sh', [`${nport}`]);
 const server = http.createServer((req, res) => {
   let body = '';
@@ -67,7 +68,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(hport, (err) => {
-  console.log(`server listening on ${hport}`);
+  console.log(`ner-server listening on ${hport}`);
 });
 
 process.on('exit', () => {

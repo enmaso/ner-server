@@ -3,11 +3,6 @@
   "version": "1.3.5",
   "description": "Lightweight Nodejs STANFORD Named Entity Recognition server",
   "main": "ner.js",
-  "config": {
-    "port_http": 9000,
-    "port_ner": 8080,
-    "limit": 2
-  },
   "scripts": {
     "start": "node ner.js",
     "test": "echo \"Error: no test specified\" && exit 1"
