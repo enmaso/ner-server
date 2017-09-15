@@ -4,11 +4,14 @@
   "description": "STANFORD NER Webservice",
   "main": "index.js",
   "config": {
-    "http_port": 9000,
-    "ner_port": 8080
+    "ports": {
+      "http": 9000,
+      "ner": 8080
+    },
+    "limit": 2
   },
   "scripts": {
-    "start": "node index.js $npm_package_config_http_port $npm_package_config_ner_port",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

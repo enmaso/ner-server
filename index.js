@@ -3,8 +3,6 @@ const net = require('net');
 const path = require('path');
 const childProcess = require('child_process');
 
-const config = require('./config');
-
 childProcess.exec('java -version', (err, stdout, stderr) => {
   if(err) {
     console.error('Java Runtime Required');
@@ -12,8 +10,10 @@ childProcess.exec('java -version', (err, stdout, stderr) => {
   }
 });
 
-const child = childProcess.spawn('./bin/server.sh', [`${config.ner.port}`]);
-
+const hport = process.env.npm_package_config_ports_http;
+const nport = process.env.npm_package_config_ports_ner;
+const limit = process.env.npm_package_config_limit;
+const child = childProcess.spawn('./bin/server.sh', [`${nport}`]);
 const server = http.createServer((req, res) => {
   let body = '';
   if(req.method !== 'PUT') {
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
   }
   req.on('data', data => {
     body += data;
-    if (body.length > (config.put.limit * Math.pow(10, 6))) {
+    if (body.length > (limit * Math.pow(10, 6))) {
       req.connection.destroy();
     }
   });
@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
     }
     let socket = new net.Socket();
     res.setHeader('Content-Type', 'application/json');
-    socket.connect(config.ner.port, 'localhost', () => {
+    socket.connect(nport, 'localhost', () => {
       socket.write(body.replace(/\r?\n|\r|\t/g, ' ') + '\n');
     });
     socket.on('data', data => {
@@ -66,8 +66,8 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(config.web.port, (err) => {
-  console.log(`server listening on ${config.web.port}`);
+server.listen(hport, (err) => {
+  console.log(`server listening on ${hport}`);
 });
 
 process.on('exit', () => {
