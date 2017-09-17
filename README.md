@@ -1,33 +1,33 @@
 # ner-server
-> Lightweight web server for Stanford NER
+Lightweight Nodejs Stanford Named Entity Recognition server <br>
+This is **not** a node_module, this is a standalone server
 
 ## Requirements
-* [Stanford NER](http://nlp.Stanford.edu/software/CRF-NER.shtml)
-* [Java 1.8 Runtime](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* Java 1.8+
+* [Stanford NER Download](https://nlp.stanford.edu/software/stanford-ner-2017-06-09.zip)
 
 ## Installation
-### Unpack Stanford NER lib into bin/
-#### All you really need is the lib/ and classifiers/ directories and the stanford-ner.jar and build.xml files. And obviously the server.sh that already exists in bin/
-
-## Notes
-Accepts PUT method only.
-
-PUT a string
+Unpack *stanford-ner-2017-06-09.zip* to bin/ directory
 ```
-curl -X PUT --data "Sample text data, by Frank Sinatra, in 1969, flew to the moon for $10.00" localhost:9000
-```
-PUT a text file
-```
-curl -T yourfile.txt localhost:9000
+> cd ner-server
+> wget https://nlp.stanford.edu/software/stanford-ner-2017-06-09.zip
+> unzip stanford-ner-2017-06-09.zip
+> cp stanford-ner-2017-06-09/ bin/
 ```
 
-Returns JSON.
+## Running the server
+```
+npm start
+```
 
-## Config
-Open config.js and change
+## Usage
+Passing a string to the server
 ```
-web.port
-ner.port
-put.limit
+curl -X PUT --data "Frank Sinatra, in 1969, sang New York, New York" localhost:8080
 ```
-The port values are self explanatory. The PUT limit is the file size limit to which the server accepts. Default is 2MB, I wouldn't recommend going higher than that.
+Passing a file to the server
+```
+curl -T test/sample.txt localhost:8080
+```
+
+Returns a JSON string
