@@ -14,7 +14,7 @@ const hport = process.env.HPORT || 9000;
 const nport = process.env.NPORT || 8080;
 const limit = process.env.LIMIT || 2;
 
-const child = childProcess.spawn('./bin/server.sh', [`${nport}`]);
+const child = childProcess.spawn('sh', [`${__dirname}/bin/server.sh`, `${nport}`]);
 const server = http.createServer((req, res) => {
   let body = '';
   if(req.method !== 'PUT') {
